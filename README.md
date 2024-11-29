@@ -1,6 +1,6 @@
 # Book-reviewer
 
-MYSQL code
+//MYSQL code for setup database
 
 create database book;
 
