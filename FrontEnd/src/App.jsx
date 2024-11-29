@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { BookPlus } from 'lucide-react';
 import { BookReviewForm } from './componenets/BookReviewForm';
-
-import { filterAndSortReviews } from './utils/ReviewUtils';
+import { ReviewList } from './componenets/ReviewList';
 import './App.css'
 
 function App() {
   const [reviews, setReviews] = useState([]);
   const [editingReview, setEditingReview] = useState(null);
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState('date');
-  const [sortDirection, setSortDirection] = useState('des');
+
+
 
   const handleAddReview = (formData) => {
     const newReview = {
@@ -40,16 +38,8 @@ function App() {
     setReviews(reviews.filter((review) => review.id !== id));
   };
 
-  const toggleSortDirection = () => {
-    setSortDirection(current => current === 'asc' ? 'desc' : 'asc');
-  };
+ 
 
-  const filteredAndSortedReviews = filterAndSortReviews(
-    reviews,
-    searchTerm,
-    sortBy,
-    sortDirection
-  );
 
 
   
@@ -81,7 +71,13 @@ function App() {
           </div>
         )}
 
-    
+      
+
+        <ReviewList
+          
+          onEdit={setEditingReview}
+          onDelete={handleDeleteReview}
+        />
       </div>
     </div>
   );
