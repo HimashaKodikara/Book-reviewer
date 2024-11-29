@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { BookPlus } from 'lucide-react';
 import { BookReviewForm } from './componenets/BookReviewForm';
-import { ReviewFilters } from './componenets/ReviewFilers';
-import { ReviewList } from './componenets/ReviewList';
+
 import { filterAndSortReviews } from './utils/ReviewUtils';
 import './App.css'
 
@@ -82,20 +81,7 @@ function App() {
           </div>
         )}
 
-        <ReviewFilters
-          searchTerm={searchTerm}
-          onSearchChange={setSearchTerm}
-          sortBy={sortBy}
-          onSortChange={setSortBy}
-          sortDirection={sortDirection}
-          onSortDirectionChange={toggleSortDirection}
-        />
-
-        <ReviewList
-          reviews={filteredAndSortedReviews}
-          onEdit={setEditingReview}
-          onDelete={handleDeleteReview}
-        />
+    
       </div>
     </div>
   );
