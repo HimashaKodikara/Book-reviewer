@@ -29,6 +29,7 @@ export function BookReviewForm({ onSubmitSuccess, initialData, buttonText = 'Sub
 
       }
     } catch (error) {
+      window.Alert("Error submitting review");
       console.error('Error submitting review:', error.message);
     }
   };

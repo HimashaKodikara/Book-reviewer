@@ -9,11 +9,9 @@ app.use(express.json());
 // Routes
 app.use('/books', bookRoutes);
 
-app.get('/', (req, res) => {
-    res.json("From Backend start");
-});
 
-// Start the server
+
+// Start server
 const PORT = 8001;
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);

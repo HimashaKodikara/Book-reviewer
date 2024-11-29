@@ -18,7 +18,7 @@ db.connect((err) => {
     console.log("Connected to the MySQL database");
 });
 
-
+//Get API
 exports.getBooks = (req, res) => {
     const query = 'SELECT * FROM book'; 
 
@@ -35,6 +35,7 @@ exports.getBooks = (req, res) => {
 };
 
 
+// Add API
 exports.addBook = (req,res)=>{
     console.log(req.body);
   const{title, author, rating, review_text } = req.body;
@@ -48,6 +49,7 @@ exports.addBook = (req,res)=>{
   })
 }
 
+//Update API
 exports.updateBook = (req,res)=>{
     const {id} = req.params;
     const{title, author, rating, review_text} = req.body;
@@ -64,6 +66,8 @@ exports.updateBook = (req,res)=>{
     });
 };
 
+
+//Delete API
 exports.deleteBook = (req,res) =>{
     const {id} = req.params;
     const query = 'DELETE FROM book WHERE id =?';
