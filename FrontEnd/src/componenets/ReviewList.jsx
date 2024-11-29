@@ -3,6 +3,7 @@ import axios from 'axios';
 import { BookReviewCard } from './BookReviewCard';
 import { BookReviewForm } from './BookReviewForm';
 import { BookUpdated } from './BookUpdated';
+import { Search, Calendar, Star } from 'lucide-react';
 
 export function ReviewList() {
   const [reviews, setReviews] = useState([]);
@@ -21,7 +22,7 @@ export function ReviewList() {
       .get('http://localhost:8001/books')
       .then((response) => {
         setReviews(response.data);
-        setFilteredReviews(response.data); // Initialize filtered reviews
+        setFilteredReviews(response.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -65,7 +66,16 @@ export function ReviewList() {
     }
 
     if (filters.date) {
-      filtered = filtered.filter((review) => review.date === filters.date);
+      filtered = filtered.filter((review) => {
+        if (!review.date) return false;
+        try {
+          const reviewDate = new Date(review.date).toISOString().split('T')[0];
+          return reviewDate === filters.date;
+        } catch (error) {
+          console.error('Invalid date value:', review.date, error);
+          return false;
+        }
+      });
     }
 
     if (filters.rating) {
@@ -108,33 +118,53 @@ export function ReviewList() {
 
   return (
     <div>
-      <div className="mb-6">
+      <div className="mb-6 p-4 bg-gray-50 rounded-lg shadow-sm">
         <h2 className="text-xl font-semibold mb-4">Filter Reviews</h2>
-        <div className="space-y-4">
-          <input
-            type="text"
-            name="title"
-            placeholder="Filter by title"
-            value={filters.title}
-            onChange={handleFilterChange}
-            className="w-full px-4 py-2 border rounded-md"
-          />
-          <input
-            type="date"
-            name="date"
-            placeholder="Filter by date"
-            value={filters.date}
-            onChange={handleFilterChange}
-            className="w-full px-4 py-2 border rounded-md"
-          />
-          <input
-            type="number"
-            name="rating"
-            placeholder="Filter by rating"
-            value={filters.rating}
-            onChange={handleFilterChange}
-            className="w-full px-4 py-2 border rounded-md"
-          />
+        <div className="flex flex-row gap-8 mx-auto">
+        
+          <div className="flex items-center border rounded-md overflow-hidden ">
+            <div className="px-3 text-gray-500">
+              <Search size={18} />
+            </div>
+            <input
+              type="text"
+              name="title"
+              placeholder="Filter by title"
+              value={filters.title}
+              onChange={handleFilterChange}
+              className="w-full px-4 py-2 border-none focus:ring-0"
+            />
+          </div>
+
+          {/* Date Filter */}
+          <div className="flex items-center border rounded-md overflow-hidden">
+            <div className="px-3 text-gray-500">
+              <Calendar size={18} />
+            </div>
+            <input
+              type="date"
+              name="date"
+              placeholder="Filter by date"
+              value={filters.date}
+              onChange={handleFilterChange}
+              className="w-full px-4 py-2 border-none focus:ring-0"
+            />
+          </div>
+
+          {/* Rating Filter */}
+          <div className="flex items-center border rounded-md overflow-hidden">
+            <div className="px-3 text-gray-500">
+              <Star size={18} />
+            </div>
+            <input
+              type="number"
+              name="rating"
+              placeholder="Filter by rating"
+              value={filters.rating}
+              onChange={handleFilterChange}
+              className="w-full px-4 py-2 border-none focus:ring-0"
+            />
+          </div>
         </div>
       </div>
 
