@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BookReviewCard } from './BookReviewCard';
-import { BookReviewForm } from './BookReviewForm';
 import { BookUpdated } from './BookUpdated';
 import { Search, Calendar, Star } from 'lucide-react';
 
@@ -121,7 +120,7 @@ export function ReviewList() {
       <div className="mb-6 p-4 bg-gray-50 rounded-lg shadow-sm">
         <h2 className="text-xl font-semibold mb-4">Filter Reviews</h2>
         <div className="flex flex-row gap-8 mx-auto">
-        
+
           <div className="flex items-center border rounded-md overflow-hidden ">
             <div className="px-3 text-gray-500">
               <Search size={18} />
@@ -136,7 +135,7 @@ export function ReviewList() {
             />
           </div>
 
-          {/* Date Filter */}
+        
           <div className="flex items-center border rounded-md overflow-hidden">
             <div className="px-3 text-gray-500">
               <Calendar size={18} />
@@ -151,7 +150,7 @@ export function ReviewList() {
             />
           </div>
 
-          {/* Rating Filter */}
+          
           <div className="flex items-center border rounded-md overflow-hidden">
             <div className="px-3 text-gray-500">
               <Star size={18} />
