@@ -1,4 +1,4 @@
-import React, { useState,Alert } from 'react';
+import React, { useState, Alert } from 'react';
 import { StarRating } from './StarRating';
 import axios from 'axios';
 
@@ -19,14 +19,14 @@ export function BookReviewForm({ onSubmitSuccess, initialData, buttonText = 'Sub
         rating: formData.rating,
         review_text: formData.reviewText,
       });
-    
+
       window.alert("New Review is added");
-    
+
 
       if (onSubmitSuccess) {
         onSubmitSuccess(response.data);
-       
-        
+
+
       }
     } catch (error) {
       console.error('Error submitting review:', error.message);
@@ -91,7 +91,7 @@ export function BookReviewForm({ onSubmitSuccess, initialData, buttonText = 'Sub
       >
         {buttonText}
       </button>
-      
+
     </form>
   );
 }

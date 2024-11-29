@@ -26,14 +26,14 @@ export function BookUpdated({ onSubmitSuccess, initialData, buttonText = 'Submit
         review_text: formData.reviewText,
       };
   
-      // Include the book ID in the URL
+         window.alert("Update the review");
       const response = await axios.put(
         `http://localhost:8001/books/books/${initialData.id}`,
         payload
       );
   
       if (response.status === 200 || response.status === 204) {
-        // Notify the parent component about successful submission
+      
         if (onSubmitSuccess) {
           onSubmitSuccess(response.data);
         }
@@ -41,7 +41,7 @@ export function BookUpdated({ onSubmitSuccess, initialData, buttonText = 'Submit
         console.error('Unexpected response:', response);
       }
     } catch (error) {
-      // Handle errors gracefully
+  
       console.error('Error submitting review:', error.message);
       if (error.response) {
         console.error('Server responded with:', error.response.data);
